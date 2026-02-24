@@ -1,20 +1,19 @@
-// 1. Cart load karne ka function
+
 function loadCart() {
     let cart = JSON.parse(localStorage.getItem('myCart')) || [];
     const container = document.getElementById('cart-items-list');
     let total = 0;
 
-    container.innerHTML = ""; // Pehle khali karein
-
+    container.innerHTML = ""; 
     if (cart.length === 0) {
         container.innerHTML = "<h3 style='text-align:center; padding: 20px;'>Oops! Your cart is empty. 🛒</h3>";
         document.getElementById('grand-total').innerText = 0;
         return;
     }
 
-    // Har item ko list mein dikhao
+
     cart.forEach((item, index) => {
-        // Quantity agar nahi hai toh 1 set karein
+
         let qty = item.quantity || 1; 
         let itemTotal = item.price * qty;
         total += itemTotal;
@@ -44,45 +43,44 @@ function loadCart() {
     document.getElementById('grand-total').innerText = total;
 }
 
-// 2. Quantity change karne ke liye function (+/-)
+
 function changeQty(index, delta) {
     let cart = JSON.parse(localStorage.getItem('myCart')) || [];
     
     if (cart[index]) {
-        // Quantity update karo (minimum 1 rehni chahiye)
+       
         cart[index].quantity = (cart[index].quantity || 1) + delta;
         
         if (cart[index].quantity < 1) {
-            removeItem(index); // Agar 1 se niche jaye toh remove kar do
+            removeItem(index); 
             return;
         }
     }
     
     localStorage.setItem('myCart', JSON.stringify(cart));
-    loadCart(); // UI refresh
+    loadCart();
 }
 
-// 3. Item hatane ke liye function
 function removeItem(index) {
     let cart = JSON.parse(localStorage.getItem('myCart')) || [];
     cart.splice(index, 1);
     localStorage.setItem('myCart', JSON.stringify(cart));
     loadCart();
     
-    // Home page par cart count update karne ke liye (agar zarurat ho)
+   
     updateCartCount(); 
 }
 
-// 4. Checkout function - Ab ye seedha page par bhejega
+
 function checkout() {
     let cart = JSON.parse(localStorage.getItem('myCart')) || [];
     if(cart.length === 0) {
         alert("Pehle kuch saman toh add karo!");
         return;
     }
-    // Seedha checkout page par bhej rahe hain
+   
     window.location.href = "checkout.html";
 }
 
-// Page load par execute karein
+
 loadCart();

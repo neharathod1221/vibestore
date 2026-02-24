@@ -16,7 +16,7 @@ const products = [
     { id: 42, name: "Laptop bages", price: 1800, category: "Bags", img: "https://www.luggagefactory.com/cdn/shop/products/412TJC7Tf9L_600x600.jpg?v=1630001816" },
 ];
 
-// 1. Load Products Function (Filtered data handle karne ke liye update kiya)
+
 function loadProducts(data = products) {
     const container = document.getElementById('product-container');
     if(!container) return;
@@ -49,7 +49,7 @@ function loadProducts(data = products) {
     });
 }
 
-// 2. Search Logic (Ye naya part hai)
+
 const searchInput = document.getElementById('search-input');
 if(searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -58,7 +58,7 @@ if(searchInput) {
             p.name.toLowerCase().includes(searchTerm) || 
             p.category.toLowerCase().includes(searchTerm)
         );
-        loadProducts(filteredResults); // Filtered data load karega
+        loadProducts(filteredResults); 
     });
 }
 

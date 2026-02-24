@@ -26,17 +26,17 @@
     </div>
 
     <script>
-        // LocalStorage se order ka data uthana
+       
         const lastOrder = JSON.parse(localStorage.getItem('lastOrder'));
         
         if(lastOrder) {
-            // Random Order ID generate karna
+            
             const orderId = "VIBE-" + Math.floor(100000 + Math.random() * 900000);
             
-            // Items ka naam ek sath jodna
+           
             const itemNames = lastOrder.items.map(item => item.name).join(", ");
             
-            // Total price calculate karna
+            
             let totalBill = 0;
             lastOrder.items.forEach(item => {
                 totalBill += (item.price * (item.quantity || 1));
@@ -53,12 +53,12 @@
                 <p style="font-size: 18px; margin-top: 10px;"><strong>Total Paid:</strong> ₹${totalBill}</p>
             `;
         } else {
-            // Agar koi direct is page par aaye bina order kiye
+           
             document.body.innerHTML = "<h1>No order found!</h1><a href='index.html'>Go back to shop</a>";
         }
 
         function goHome() {
-            // Final cleanup: Cart khali karo aur home par bhejo
+            
             localStorage.removeItem('myCart'); 
             window.location.href = "index.html";
         }
